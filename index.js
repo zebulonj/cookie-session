@@ -42,6 +42,9 @@ function cookieSession(options) {
 
   // name - previously "opts.key"
   var name = opts.name || opts.key || 'express:sess';
+  
+  // the property on the req object, used to access the session
+  var accessor = opts.accessor || 'session';
 
   // secrets
   var keys = opts.keys;
@@ -66,7 +69,7 @@ function cookieSession(options) {
     req.sessionOptions = Object.create(opts)
     req.sessionKey = name
 
-    req.__defineGetter__('session', function(){
+    req.__defineGetter__(accessor, function(){
       // already retrieved
       if (sess) return sess;
 
@@ -96,7 +99,7 @@ function cookieSession(options) {
       return sess;
     });
 
-    req.__defineSetter__('session', function(val){
+    req.__defineSetter__(accessor, function(val){
       if (null == val) return sess = false;
       if ('object' == typeof val) return sess = new Session(req, val);
       throw new Error('req.session can only be set as null or an object.');

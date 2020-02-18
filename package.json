@@ -1,8 +1,8 @@
 {
-  "name": "cookie-session",
+  "name": "@zebulonj/cookie-session",
   "description": "cookie session middleware",
-  "repository": "expressjs/cookie-session",
-  "version": "1.4.0",
+  "repository": "zebulonj/cookie-session",
+  "version": "1.5.0",
   "keywords": [
     "connect",
     "express",
